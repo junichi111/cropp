@@ -17,6 +17,9 @@ document.getElementById('upload').addEventListener('change', function () {
 
 // ダウンロードボタンクリック時のイベント
 document.getElementById('download').addEventListener('click', function () {
+  // ローディングインジケーターを表示
+  document.getElementById('loader').style.display = 'block';
+
   croppieInstance.result({
     type: 'blob',
     size: 'original',
@@ -31,5 +34,8 @@ document.getElementById('download').addEventListener('click', function () {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+
+    // ローディングインジケーターを非表示
+    document.getElementById('loader').style.display = 'none';
   });
 });
