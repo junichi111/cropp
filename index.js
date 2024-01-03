@@ -4,7 +4,7 @@ var croppieInstance = new Croppie(document.getElementById('croppie'), {
   boundary: { width: 300, height: 300 }
 });
 croppieInstance.bind({
-  url: "C:\Users\ik2i0\croppie-app\IMG_0313.PNG" // プレースホルダー画像のURL
+  url: "https://github.com/ik2i03/cropp/blob/main/IMG_0313.PNG" // プレースホルダー画像のURL
 });
 
 // 画像アップロード時のイベント
