@@ -1,7 +1,10 @@
-// Croppieインスタンスを初期化
+// Croppieインスタンスを初期化し、プレースホルダー画像をバインドする
 var croppieInstance = new Croppie(document.getElementById('croppie'), {
   viewport: { width: 200, height: 200, type: 'circle' },
   boundary: { width: 300, height: 300 }
+});
+croppieInstance.bind({
+  url: "C:\Users\ik2i0\croppie-app\IMG_0313.PNG" // プレースホルダー画像のURL
 });
 
 // 画像アップロード時のイベント
