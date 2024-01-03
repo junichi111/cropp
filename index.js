@@ -1,13 +1,13 @@
-// Croppieインスタンスを初期化し、プレースホルダー画像をバインドする
+// Initialize Croppie instance and bind placeholder image
 var croppieInstance = new Croppie(document.getElementById('croppie'), {
   viewport: { width: 200, height: 200, type: 'circle' },
   boundary: { width: 300, height: 300 }
 });
 croppieInstance.bind({
-  url: "https://raw.githubusercontent.com/ik2i03/cropp/main/IMG_0313.PNG" // プレースホルダー画像のURL
+  url: "https://raw.githubusercontent.com/ik2i03/cropp/main/IMG_0313.PNG"
 });
 
-// 画像アップロード時のイベント
+// Image upload event
 document.getElementById('upload').addEventListener('change', function () {
   var reader = new FileReader();
   reader.onload = function (e) {
@@ -18,9 +18,9 @@ document.getElementById('upload').addEventListener('change', function () {
   reader.readAsDataURL(this.files[0]);
 });
 
-// ダウンロードボタンクリック時のイベント
+// Download button click event
 document.getElementById('download').addEventListener('click', function () {
-  // ローディングインジケーターを表示
+  // Show loading indicator during download
   document.getElementById('loader').style.display = 'block';
 
   croppieInstance.result({
@@ -29,7 +29,7 @@ document.getElementById('download').addEventListener('click', function () {
     quality: 1,
     format: 'png'
   }).then(function (blob) {
-    // ダウンロード処理
+    // Download process
     var url = URL.createObjectURL(blob);
     var a = document.createElement('a');
     a.href = url;
@@ -38,7 +38,7 @@ document.getElementById('download').addEventListener('click', function () {
     a.click();
     document.body.removeChild(a);
   }).finally(function() {
-    // ローディングインジケーターを非表示
+    // Hide loading indicator after download
     document.getElementById('loader').style.display = 'none';
   });
 });
