@@ -37,7 +37,7 @@ document.getElementById('download').addEventListener('click', function () {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-
+  }).finally(function() {
     // ローディングインジケーターを非表示
     document.getElementById('loader').style.display = 'none';
   });
