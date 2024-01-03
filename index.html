@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <title>Updated Croppie Image Cropper</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 <style>
   body {
     display: flex;
@@ -14,42 +12,56 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: #f4f4f4;
   }
-  .upload-btn, #download {
-    margin-top: 20px;
+  .btn, .upload-btn {
+    background-color: #4682b4;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    transition: transform 0.2s;
   }
-  /* Updated loader style */
+  .btn:hover, .upload-btn:hover {
+    transform: translateY(1px);
+  }
   .loader {
     border: 4px solid rgba(0,0,0,0.1);
-    border-left-color: #7986cb;
+    border-left-color: #4682b4;
     border-radius: 50%;
     width: 50px;
     height: 50px;
     animation: spin 1s linear infinite;
-    display: none; /* Initially hidden */
+    display: none;
   }
-
   @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+  }
+  .spacing {
+    height: 1rem;
   }
 </style>
 </head>
 <body>
 
-<!-- Hidden file input -->
 <input type="file" id="upload" style="display:none;">
-<!-- Custom upload button -->
-<button class="btn waves-effect waves-light upload-btn" onclick="document.getElementById('upload').click();">アップロード<iclass="material-icons right">cloud_upload</i></button>
+<button class="btn upload-btn" onclick="document.getElementById('upload').click();">ファイルを選択</button>
+
+<div class="spacing"></div>
 
 <div id="croppie"></div>
 
-<button id="download" class="btn waves-effect waves-light">ダウンロード<i class="material-icons right">save_alt</i></button>
+<button id="download" class="btn">ダウンロード</button>
 
 <div class="loader" id="loader"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="index.js"></script>
 </body>
 </html>
