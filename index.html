@@ -47,6 +47,19 @@
   .spacing {
     height: 1rem;
   }
+  /* 追加のスタイル */
+  .croppie-container .cr-viewport,
+  .croppie-container .cr-resizer {
+      position: absolute;
+      border: 1px solid rgba(255, 255, 255, 0.5); /* 白の半透明の線に変更 */
+      margin: auto;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      box-shadow: 0 0 2000px 2000px rgba(0, 0, 0, 0.5);
+      z-index: 0;
+  }
 </style>
 </head>
 <body>
@@ -64,8 +77,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
 <script src="index.js"></script>
-</body>
-</html>
 
 <script>
 // Initialize Croppie instance and bind placeholder image
@@ -113,3 +124,5 @@ document.getElementById('download').addEventListener('click', function () {
   });
 });
 </script>
+</body>
+</html>
