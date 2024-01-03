@@ -8,14 +8,24 @@ updateCroppieSize();  // Adjust size on initial load
 
 // Update Croppie size based on window size
 function updateCroppieSize() {
-  var width = window.innerWidth > 1200 ? 300 : (window.innerWidth / 4);
-  var height = width;
-  croppieInstance.destroy(); // Destroy the existing instance
-  croppieInstance = new Croppie(croppieElement, { // Create a new instance with updated size
-    viewport: { width: width, height: height, type: 'circle' },
-    boundary: { width: width * 1.5, height: height * 1.5 }
+  var viewportWidth, boundaryWidth;
+  if (window.innerWidth > 1200) {
+    // デスクトップの場合
+    viewportWidth = 300;
+    boundaryWidth = 450;
+  } else {
+    // スマートフォンやタブレットの場合
+    viewportWidth = window.innerWidth * 0.8; // 画面幅の80%
+    boundaryWidth = window.innerWidth * 0.9; // 画面幅の90%
+  }
+  var height = viewportWidth;  // 正方形のため、幅と高さを同じに設定
+
+  croppieInstance.destroy(); // 既存のインスタンスを破棄
+  croppieInstance = new Croppie(croppieElement, { // 新しいサイズでインスタンスを生成
+    viewport: { width: viewportWidth, height: height, type: 'circle' },
+    boundary: { width: boundaryWidth, height: boundaryWidth }
   });
-  croppieInstance.bind({ // Rebind the image
+  croppieInstance.bind({ // 画像を再バインド
     url: "https://raw.githubusercontent.com/ik2i03/cropp/main/IMG_0313.PNG"
   });
 }
