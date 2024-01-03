@@ -68,3 +68,21 @@ document.getElementById('download').addEventListener('click', function () {
     document.getElementById('loader').style.display = 'none';
   });
 });
+
+// 1px単位での微調整機能
+function moveCroppie(x, y) {
+  croppieInstance.get().points = croppieInstance.get().points.map((point, index) => {
+    if (index % 2 === 0) {
+      return point + x;
+    } else {
+      return point + y;
+    }
+  });
+  croppieInstance.setZoom(croppieInstance.get().zoom); // ポイントを更新
+}
+
+// ボタンイベントリスナー
+document.getElementById('move-left').addEventListener('click', () => moveCroppie(-1, 0));
+document.getElementById('move-right').addEventListener('click', () => moveCroppie(1, 0));
+document.getElementById('move-up').addEventListener('click', () => moveCroppie(0, -1));
+document.getElementById('move-down').addEventListener('click', () => moveCroppie(0, 1));
