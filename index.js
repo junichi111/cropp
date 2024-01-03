@@ -1,7 +1,7 @@
 // Initialize Croppie instance and bind placeholder image
 var croppieInstance = new Croppie(document.getElementById('croppie'), {
-  viewport: { width: 270, height: 270 },
-  boundary: { width: 350, height: 350 }
+  viewport: { width: 200, height: 200, type: 'circle' },
+  boundary: { width: 300, height: 300 }
 });
 croppieInstance.bind({
   url: "https://raw.githubusercontent.com/ik2i03/cropp/main/IMG_0313.PNG"
