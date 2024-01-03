@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Croppie 画像切り抜き</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- レスポンシブ対応のためのビューポートメタタグ -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css" />
 <style>
   /* ローディングインジケーターのスタイル */
@@ -18,6 +19,7 @@
     top: 50%;
     transform: translate(-50%, -50%);
     display: none;
+    z-index: 1000; /* 他の要素より前面に表示 */
   }
 
   @keyframes spin {
