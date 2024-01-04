@@ -71,14 +71,25 @@ document.getElementById('download').addEventListener('click', function () {
 
 // 1px単位での微調整機能
 function moveCroppie(x, y) {
-  croppieInstance.get().points = croppieInstance.get().points.map((point, index) => {
-    if (index % 2 === 0) {
-      return point + x;
-    } else {
-      return point + y;
-    }
+  croppieInstance.result({
+    type: 'rawcanvas'
+  }).then(function (canvas) {
+    // 現在のクロップの位置を取得
+    var currentPoints = croppieInstance.get().points;
+    // 指定された方向に1px移動
+    var newPoints = currentPoints.map((point, index) => {
+      if (index % 2 === 0) {
+        return point + x;
+      } else {
+        return point + y;
+      }
+    });
+    // 新しい位置で画像を更新
+    croppieInstance.bind({
+      url: canvas.toDataURL(),
+      points: newPoints
+    });
   });
-  croppieInstance.setZoom(croppieInstance.get().zoom); // ポイントを更新
 }
 
 // ボタンイベントリスナー
