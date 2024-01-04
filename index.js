@@ -68,3 +68,33 @@ document.getElementById('download').addEventListener('click', function () {
     document.getElementById('loader').style.display = 'none';
   });
 });
+
+// 微調整機能を追加するための関数とイベントハンドラ
+function adjustCroppie(px, py) {
+  var transform = croppieInstance.get().points;
+  var newPoints = [
+    transform[0] + px, // 左上のX座標
+    transform[1] + py, // 左上のY座標
+    transform[2] + px, // 右下のX座標
+    transform[3] + py  // 右下のY座標
+  ];
+  croppieInstance.setZoom(1); // ズームをリセット
+  croppieInstance.bind({ // 新しいポイントでCroppieを更新
+    url: '画像のURL',
+    points: newPoints
+  });
+}
+
+// 移動ボタンのイベントハンドラを設定
+document.getElementById('moveLeft').addEventListener('click', function() {
+  adjustCroppie(-1, 0); // 左に1px移動
+});
+document.getElementById('moveRight').addEventListener('click', function() {
+  adjustCroppie(1, 0); // 右に1px移動
+});
+document.getElementById('moveUp').addEventListener('click', function() {
+  adjustCroppie(0, -1); // 上に1px移動
+});
+document.getElementById('moveDown').addEventListener('click', function() {
+  adjustCroppie(0, 1); // 下に1px移動
+});
