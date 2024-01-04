@@ -13,7 +13,7 @@
     align-items: center;
     justify-content: center;
     background-color: #ffffff;
-    overflow: hidden; /* スクロールバーを非表示に */
+    overflow: hidden;
   }
   .btn, .upload-btn {
     background-color: #4682b4;
@@ -47,11 +47,10 @@
   .spacing {
     height: 1rem;
   }
-  /* 追加のスタイル */
   .croppie-container .cr-viewport,
   .croppie-container .cr-resizer {
       position: absolute;
-      border: 1px solid rgba(255, 255, 255, 0.5); /* 白の半透明の線に変更 */
+      border: 1px solid rgba(255, 255, 255, 0.5);
       margin: auto;
       top: 0;
       bottom: 0;
@@ -71,19 +70,14 @@
 
 <div id="croppie"></div>
 
-<div class="spacing"></div>
-
-<!-- 1px単位での微調整ボタン -->
-<div>
-  <button id="move-left" class="btn">左に1px</button>
-  <button id="move-right" class="btn">右に1px</button>
-  <button id="move-up" class="btn">上に1px</button>
-  <button id="move-down" class="btn">下に1px</button>
-</div>
-
-<div class="spacing"></div>
-
 <button id="download" class="btn">ダウンロード</button>
+
+<div id="movement-buttons" class="spacing">
+  <button class="btn" onclick="moveCroppie('up')">上に1px</button>
+  <button class="btn" onclick="moveCroppie('down')">下に1px</button>
+  <button class="btn" onclick="moveCroppie('left')">左に1px</button>
+  <button class="btn" onclick="moveCroppie('right')">右に1px</button>
+</div>
 
 <div class="loader" id="loader"></div>
 
