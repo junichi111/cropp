@@ -1,19 +1,8 @@
-// Initialize Croppie instance and bind placeholder image
+// Declare variables for Croppie instance and element
 var croppieElement = document.getElementById('croppie');
-var croppieInstance;
-initializeCroppie();  // 初期化関数を呼び出す
+var croppieInstance = null;
 
-function initializeCroppie() {
-  croppieInstance = new Croppie(croppieElement, {
-    viewport: { width: 200, height: 200, type: 'circle' },
-    boundary: { width: 300, height: 300 }
-  });
-  croppieInstance.bind({
-    url: "https://raw.githubusercontent.com/ik2i03/cropp/main/IMG_0313.PNG"
-  });
-}
-
-// Update Croppie size based on window size
+// Function to initialize or update Croppie instance
 function updateCroppieSize() {
   var viewportWidth, boundaryWidth;
   if (window.innerWidth > 1200) {
@@ -25,20 +14,26 @@ function updateCroppieSize() {
   }
   var height = viewportWidth;
 
+  // Destroy existing instance if it exists
   if (croppieInstance) {
-    croppieInstance.destroy(); // Destroy existing instance
+    croppieInstance.destroy();
   }
+
+  // Initialize a new Croppie instance with updated size
   croppieInstance = new Croppie(croppieElement, {
     viewport: { width: viewportWidth, height: height, type: 'circle' },
     boundary: { width: boundaryWidth, height: boundaryWidth }
   });
+
+  // Bind placeholder image to the new instance
   croppieInstance.bind({
     url: "https://raw.githubusercontent.com/ik2i03/cropp/main/IMG_0313.PNG"
   });
 }
 
-// Listen for window resize events
+// Listen for window resize events and page load to update Croppie size
 window.addEventListener('resize', updateCroppieSize);
+document.addEventListener('DOMContentLoaded', updateCroppieSize);  // Add this line
 
 // Image upload event
 document.getElementById('upload').addEventListener('change', function () {
@@ -55,7 +50,7 @@ document.getElementById('upload').addEventListener('change', function () {
 
 // Download button click event
 document.getElementById('download').addEventListener('click', function () {
-  if (!croppieInstance) return;  // インスタンスが存在しない場合は何もしない
+  if (!croppieInstance) return;
 
   document.getElementById('loader').style.display = 'block';
   croppieInstance.result({
