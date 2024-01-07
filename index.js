@@ -4,15 +4,18 @@ var croppieInstance = null;
 
 // Function to initialize or update Croppie instance
 function updateCroppieSize() {
-  var viewportWidth, boundaryWidth;
+  var viewportWidth, viewportHeight, boundaryWidth, boundaryHeight;
   if (window.innerWidth > 1200) {
     viewportWidth = 300;
+    viewportHeight = 300; // ビューポートの高さ
     boundaryWidth = 450;
+    boundaryHeight = 450; // バウンダリーの高さ
   } else {
     viewportWidth = window.innerWidth * 0.8;
+    viewportHeight = window.innerWidth * 0.8; // ビューポートの高さを動的に調整
     boundaryWidth = window.innerWidth * 0.9;
+    boundaryHeight = window.innerWidth * 0.9; // バウンダリーの高さを動的に調整
   }
-  var height = viewportWidth;
 
   // Destroy existing instance if it exists
   if (croppieInstance) {
@@ -21,8 +24,8 @@ function updateCroppieSize() {
 
   // Initialize a new Croppie instance with updated size
   croppieInstance = new Croppie(croppieElement, {
-    viewport: { width: viewportWidth, height: height, type: 'circle' },
-    boundary: { width: boundaryWidth, height: boundaryWidth }
+    viewport: { width: viewportWidth, height: viewportHeight, type: 'circle' },
+    boundary: { width: boundaryWidth, height: boundaryHeight }
   });
 
   // Bind placeholder image to the new instance
