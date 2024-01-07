@@ -5,7 +5,7 @@ var croppieInstance = null;
 // Function to initialize or update Croppie instance
 function updateCroppieSize() {
   var viewportWidth, boundaryWidth;
-  if (window.innerWidth > 1200) {
+  if (window.innerWidth > 800) {
     viewportWidth = 300;
     boundaryWidth = 450;
   } else {
