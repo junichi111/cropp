@@ -2,21 +2,21 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>Updated Croppie Image Cropper</title>
+<title>シンプルな画像クロッパー</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css" />
 <style>
   body {
     display: flex;
+    min-height: 100vh;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: #ffffff;
-    padding: 20px;
-    min-height: 100vh;
+    overflow: hidden;
   }
-  .btn, .upload-btn {
-    background-color: #4682b4;
+  .btn, .upload-btn { /* 既存のボタンスタイルを更新 */
+    background-color: #4682b4; /* 青色に変更 */
     color: white;
     padding: 10px 20px;
     text-align: center;
@@ -25,11 +25,21 @@
     cursor: pointer;
     text-decoration: none;
     border: none;
-    border-radius: 4px;
-    transition: transform 0.2s;
+    border-radius: 4px; /* 角を丸める */
+    transition: transform 0.2s; /* トランジションを追加 */
   }
-  .btn:hover, .upload-btn:hover {
-    transform: translateY(-2px);
+  .btn:hover, .upload-btn:hover { /* マウスオーバー時の挙動 */
+    transform: translateY(1px); /* クリック感を出すために少し沈める */
+  }
+  .cr-viewport:after {
+      content: "";
+      position: absolute;
+      top: 3mm;
+      left: 3mm;
+      right: 3mm;
+      bottom: 3mm;
+      border: 1px solid rgba(255, 0, 0, 0.5);
+      pointer-events: none;
   }
   .loader {
     border: 4px solid rgba(0,0,0,0.1);
@@ -44,36 +54,25 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
-  .button-container {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-  }
-  .croppie-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    min-height: 450px;
+  .spacing {
+    height: 1rem;
   }
 </style>
 </head>
 <body>
-  <div class="button-container">
-    <input type="file" id="upload" style="display:none;">
-    <button class="btn upload-btn" onclick="document.getElementById('upload').click();">ファイルを選択</button>
-  </div>
 
-  <div id="croppie" class="croppie-container"></div>
+<input type="file" id="upload" style="display:none;" accept="image/*" onchange="onFileSelect()">
+<button class="btn upload-btn" onclick="document.getElementById('upload').click();">ファイルを選択</button>
 
-  <div class="button-container">
-    <button id="download" class="btn">ダウンロード</button>
-  </div>
+<div class="spacing"></div>
 
-  <div class="loader" id="loader"></div>
+<div id="croppie"></div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
-  <script src="index.js"></script>
+<button id="download" class="btn">ダウンロード</button>
+
+<div class="loader" id="loader"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
