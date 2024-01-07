@@ -1,22 +1,18 @@
 // Declare variables for Croppie instance and element
 var croppieElement = document.getElementById('croppie');
 var croppieInstance = null;
-var buttonContainer = document.getElementById('button-container');
 
 // Function to initialize or update Croppie instance
 function updateCroppieSize() {
-  var viewportWidth, viewportHeight, boundaryWidth, boundaryHeight;
+  var viewportWidth, boundaryWidth;
   if (window.innerWidth > 1200) {
     viewportWidth = 300;
-    viewportHeight = 300; // ビューポートの高さ
     boundaryWidth = 450;
-    boundaryHeight = 450; // バウンダリーの高さ
   } else {
     viewportWidth = window.innerWidth * 0.8;
-    viewportHeight = window.innerWidth * 0.8; // ビューポートの高さを動的に調整
     boundaryWidth = window.innerWidth * 0.9;
-    boundaryHeight = window.innerWidth * 0.9; // バウンダリーの高さを動的に調整
   }
+  var height = viewportWidth;
 
   // Destroy existing instance if it exists
   if (croppieInstance) {
@@ -25,12 +21,9 @@ function updateCroppieSize() {
 
   // Initialize a new Croppie instance with updated size
   croppieInstance = new Croppie(croppieElement, {
-    viewport: { width: viewportWidth, height: viewportHeight, type: 'circle' },
-    boundary: { width: boundaryWidth, height: boundaryHeight }
+    viewport: { width: viewportWidth, height: height, type: 'circle' },
+    boundary: { width: boundaryWidth, height: boundaryWidth }
   });
-
-  // Adjust button container position based on the boundary size
-  buttonContainer.style.top = (150 + boundaryHeight + 15) + 'px'; // boundaryの下のスペースを設定
 
   // Bind placeholder image to the new instance
   croppieInstance.bind({
@@ -40,7 +33,7 @@ function updateCroppieSize() {
 
 // Listen for window resize events and page load to update Croppie size
 window.addEventListener('resize', updateCroppieSize);
-document.addEventListener('DOMContentLoaded', updateCroppieSize);
+document.addEventListener('DOMContentLoaded', updateCroppieSize);  // Add this line
 
 // Image upload event
 document.getElementById('upload').addEventListener('change', function () {
