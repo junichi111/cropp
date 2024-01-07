@@ -5,13 +5,18 @@ var croppieInstance = null;
 // Function to initialize or update Croppie instance
 function updateCroppieSize() {
   var viewportWidth, boundaryWidth;
-  if (window.innerWidth > 1200) {
-    viewportWidth = 250;
-    boundaryWidth = 400;
+  if (window.innerWidth > 1600) {
+    viewportWidth = 350;
+    boundaryWidth = 500;
+  } else if (window.innerWidth > 1200) {
+    viewportWidth = 300;
+    boundaryWidth = 450;
   } else {
+    // 現在の動的なサイズ設定を維持
     viewportWidth = window.innerWidth * 0.8;
     boundaryWidth = window.innerWidth * 0.9;
   }
+
   var height = viewportWidth;
 
   // Destroy existing instance if it exists
