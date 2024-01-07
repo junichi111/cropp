@@ -63,15 +63,10 @@
       z-index: 0;
   }
   #button-container {
-    display: flex; /* ボタンをフレックスコンテナにする */
-    flex-wrap: nowrap; /* ボタンを折り返さないようにする */
-    justify-content: center; /* ボタンを中央揃えにする */
-    gap: 10px; /* ボタンの間に隙間を作る */
     position: fixed; /* ボタンを固定位置に設定 */
-    bottom: 80px; /* スライダーの下に位置を調整 */
-    left: 0; /* 左端からの位置 */
-    right: 0; /* 右端からの位置 */
-    transform: translateY(0%); /* Y軸の変換をリセット */
+    bottom: 30px; /* 下からの距離 */
+    left: 50%; /* 中央に配置 */
+    transform: translateX(-50%); /* 左に50%移動して中央に配置 */
     z-index: 10; /* boundaryより上に表示 */
   }
 </style>
@@ -83,8 +78,8 @@
 <!-- ボタンを含むコンテナを追加 -->
 <div id="button-container">
   <input type="file" id="upload" style="display:none;">
-  <button class="btn upload-btn" onclick="document.getElementById('upload').click();">ファイルを選択</button>
-  <button id="download" class="btn">ダウンロード</button>
+  <button class="btn upload-btn" onclick="document.getElementById('upload').click();">ファイル選択</button>
+  <button id="download" class="btn">切り抜き</button>
 </div>
 
 <div class="loader" id="loader"></div>
