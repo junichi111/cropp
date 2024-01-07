@@ -1,6 +1,7 @@
 // Declare variables for Croppie instance and element
 var croppieElement = document.getElementById('croppie');
 var croppieInstance = null;
+var buttonContainer = document.getElementById('button-container');
 
 // Function to initialize or update Croppie instance
 function updateCroppieSize() {
@@ -28,6 +29,9 @@ function updateCroppieSize() {
     boundary: { width: boundaryWidth, height: boundaryHeight }
   });
 
+  // Adjust button container position based on the boundary size
+  buttonContainer.style.top = (150 + boundaryHeight + 15) + 'px'; // boundaryの下のスペースを設定
+
   // Bind placeholder image to the new instance
   croppieInstance.bind({
     url: "https://raw.githubusercontent.com/ik2i03/cropp/main/IMG_0313.PNG"
@@ -36,7 +40,7 @@ function updateCroppieSize() {
 
 // Listen for window resize events and page load to update Croppie size
 window.addEventListener('resize', updateCroppieSize);
-document.addEventListener('DOMContentLoaded', updateCroppieSize);  // Add this line
+document.addEventListener('DOMContentLoaded', updateCroppieSize);
 
 // Image upload event
 document.getElementById('upload').addEventListener('change', function () {
