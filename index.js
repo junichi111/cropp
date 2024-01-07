@@ -6,8 +6,8 @@ var croppieInstance = null;
 function updateCroppieSize() {
   var viewportWidth, boundaryWidth;
   if (window.innerWidth > 1200) {
-    viewportWidth = 300;
-    boundaryWidth = 450;
+    viewportWidth = 250;
+    boundaryWidth = 400;
   } else {
     viewportWidth = window.innerWidth * 0.8;
     boundaryWidth = window.innerWidth * 0.9;
