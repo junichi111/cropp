@@ -8,12 +8,12 @@
 <style>
   body {
     display: flex;
-    min-height: 100vh;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: #ffffff;
-    overflow: hidden;
+    padding: 20px;
+    min-height: 100vh;
   }
   .btn, .upload-btn {
     background-color: #4682b4;
@@ -29,7 +29,7 @@
     transition: transform 0.2s;
   }
   .btn:hover, .upload-btn:hover {
-    transform: translateY(1px);
+    transform: translateY(-2px);
   }
   .loader {
     border: 4px solid rgba(0,0,0,0.1);
@@ -44,48 +44,36 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
   .croppie-container {
-      position: fixed; /* 位置を固定 */
-      top: 150px; /* 上部の要素からの距離を指定 */
-      min-height: 450px; /* 最小の高さを設定 */
-      z-index: 1;
-  }
-  .croppie-container .cr-viewport,
-  .croppie-container .cr-resizer {
-      position: absolute;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      margin: auto;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      left: 0;
-      box-shadow: 0 0 2000px 2000px rgba(0, 0, 0, 0.5);
-      z-index: 0;
-  }
-  #button-container {
-    position: fixed; /* ボタンを固定位置に設定 */
-    bottom: 30px; /* 下からの距離 */
-    left: 50%; /* 中央に配置 */
-    transform: translateX(-50%); /* 左に50%移動して中央に配置 */
-    z-index: 10; /* boundaryより上に表示 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    min-height: 450px;
   }
 </style>
 </head>
 <body>
+  <div class="button-container">
+    <input type="file" id="upload" style="display:none;">
+    <button class="btn upload-btn" onclick="document.getElementById('upload').click();">ファイルを選択</button>
+  </div>
 
-<div id="croppie"></div>
+  <div id="croppie" class="croppie-container"></div>
 
-<!-- ボタンを含むコンテナを追加 -->
-<div id="button-container">
-  <input type="file" id="upload" style="display:none;">
-  <button class="btn upload-btn" onclick="document.getElementById('upload').click();">ファイル選択</button>
-  <button id="download" class="btn">切り抜き</button>
-</div>
+  <div class="button-container">
+    <button id="download" class="btn">ダウンロード</button>
+  </div>
 
-<div class="loader" id="loader"></div>
+  <div class="loader" id="loader"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
-<script src="index.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>
