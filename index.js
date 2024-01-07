@@ -33,7 +33,7 @@ function updateCroppieSize() {
 
 // Listen for window resize events and page load to update Croppie size
 window.addEventListener('resize', updateCroppieSize);
-document.addEventListener('DOMContentLoaded', updateCroppieSize);  // Add this line
+document.addEventListener('DOMContentLoaded', updateCroppieSize);
 
 // Image upload event
 document.getElementById('upload').addEventListener('change', function () {
